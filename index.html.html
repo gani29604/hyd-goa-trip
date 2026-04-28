@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyderabad → Goa Road Trip 🚗 | Apr 29</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --card: #1c1c1c;
+    --border: #2a2a2a;
+    --accent: #f5a623;
+    --accent2: #ff6b35;
+    --green: #4ade80;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --purple: #c4b5fd;
+    --text: #f0ece4;
+    --muted: #8a8478;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 24px 48px;
+    text-align: center;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,166,35,0.18) 0%, transparent 70%),
+                linear-gradient(180deg, #111 0%, var(--bg) 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px),
+                      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(245,166,35,0.12);
+    border: 1px solid rgba(245,166,35,0.35);
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 12vw, 96px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 span.from { color: var(--text); }
+  .hero h1 span.arrow { color: var(--accent); margin: 0 8px; }
+  .hero h1 span.to { -webkit-text-stroke: 1.5px var(--accent2); color: transparent; }
+
+  .hero-sub {
+    margin-top: 18px;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .night-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(96,165,250,0.1);
+    border: 1px solid rgba(96,165,250,0.3);
+    color: var(--blue);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-top: 14px;
+    animation: fadeUp 0.6s 0.25s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .stat { text-align: center; }
+  .stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+
+  .map-btn-wrap {
+    padding: 0 20px 40px;
+    display: flex;
+    justify-content: center;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .map-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    padding: 16px 32px;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(245,166,35,0.35), 0 2px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .map-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 40px rgba(245,166,35,0.5), 0 4px 12px rgba(0,0,0,0.5);
+  }
+
+  .map-btn-sub { font-size: 10px; font-weight: 400; opacity: 0.7; display: block; margin-top: 1px; }
+
+  .section { max-width: 680px; margin: 0 auto; padding: 0 20px 20px; }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .timeline { position: relative; padding-left: 28px; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 50%, var(--border) 100%);
+    border-radius: 2px;
+  }
+
+  .stop {
+    position: relative;
+    margin-bottom: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: border-color 0.2s;
+  }
+
+  .stop:hover { border-color: rgba(245,166,35,0.4); }
+
+  .stop::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .stop.highlight {
+    border-color: rgba(245,166,35,0.5);
+    background: rgba(245,166,35,0.06);
+  }
+
+  .stop.highlight::before {
+    background: var(--accent2);
+    box-shadow: 0 0 0 2px var(--accent2), 0 0 10px rgba(255,107,53,0.6);
+    width: 12px; height: 12px;
+    left: -25px;
+  }
+
+  .stop.night-stop { border-color: rgba(96,165,250,0.25); background: rgba(96,165,250,0.04); }
+  .stop.night-stop::before { background: var(--blue); box-shadow: 0 0 0 2px var(--blue), 0 0 8px rgba(96,165,250,0.5); }
+
+  .stop-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .stop-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--text); }
+
+  .stop-time {
+    font-size: 11px;
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    background: rgba(245,166,35,0.1);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  .stop-time.night { color: var(--blue); background: rgba(96,165,250,0.1); }
+
+  .stop-desc { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-top: 6px;
+  }
+
+  .tag-fuel { background: rgba(96,165,250,0.15); color: var(--blue); border: 1px solid rgba(96,165,250,0.25); }
+  .tag-food { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .tag-warn { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+  .tag-ghat { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+  .tag-night { background: rgba(96,165,250,0.1); color: var(--blue); border: 1px solid rgba(96,165,250,0.2); }
+
+  .fuel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fuel-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .fuel-card.must { border-color: rgba(245,166,35,0.4); background: rgba(245,166,35,0.05); grid-column: span 2; }
+  .fuel-loc { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .fuel-note { font-size: 12px; color: var(--muted); }
+  .fuel-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+  .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tip-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .tip-icon { font-size: 22px; margin-bottom: 6px; }
+  .tip-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .tip-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  .alert { border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+  .alert-warn { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.25); }
+  .alert-ok { background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); }
+  .alert-night { background: rgba(96,165,250,0.07); border: 1px solid rgba(96,165,250,0.25); }
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+  .alert-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  .footer { text-align: center; padding: 40px 20px 60px; color: var(--muted); font-size: 12px; }
+  .footer-emoji { font-size: 28px; display: block; margin-bottom: 8px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .fuel-grid { grid-template-columns: 1fr; }
+    .fuel-card.must { grid-column: span 1; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🚗 Road Trip · April 29, 2026</div>
+  <h1>
+    <span class="from">HYD</span>
+    <span class="arrow">→</span>
+    <span class="to">GOA</span>
+  </h1>
+  <p class="hero-sub">Hyderabad · Kurnool · Raichur · Hubli · Ankola · Goa 🌴</p>
+  <div class="night-banner">🌙 Afternoon–Night Drive · Arrive Early Morning</div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-val">~680<span style="font-size:18px">KM</span></div>
+      <div class="stat-label">Distance</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">12–14<span style="font-size:18px">HRS</span></div>
+      <div class="stat-label">Duration</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">2–3<span style="font-size:18px">PM</span></div>
+      <div class="stat-label">Start Time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">4–5<span style="font-size:18px">AM</span></div>
+      <div class="stat-label">Arrive Goa</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP BUTTON -->
+<div class="map-btn-wrap">
+  <a class="map-btn"
+     href="https://www.google.com/maps/dir/Hyderabad,+Telangana/Jadcherla,+Telangana/Kurnool,+Andhra+Pradesh/Raichur,+Karnataka/Sindhanur,+Karnataka/Hospet,+Karnataka/Hubballi,+Karnataka/Ankola,+Karnataka/Panaji,+Goa"
+     target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+      <circle cx="12" cy="9" r="2.5"/>
+    </svg>
+    <div>
+      Open Full Route in Google Maps
+      <span class="map-btn-sub">Tap to navigate · All 9 stops included</span>
+    </div>
+  </a>
+</div>
+
+<!-- NIGHT DRIVE ALERT -->
+<div class="section">
+  <div class="alert alert-night">
+    <div class="alert-icon">🌙</div>
+    <div>
+      <div class="alert-title">Afternoon–Night Drive Heads Up</div>
+      <div class="alert-text">Starting 2–3 PM means the Hubli–Ankola ghat section (~60 km of hairpin bends) will be driven around midnight. Stay sharp, take short breaks, avoid driving drowsy. The ghats are doable at night — just go slower than usual.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROUTE TIMELINE -->
+<div class="section">
+  <div class="section-title">📍 Route & Timings</div>
+  <div class="timeline">
+
+    <div class="stop highlight">
+      <div class="stop-header">
+        <div class="stop-name">🏁 Hyderabad — Start</div>
+        <div class="stop-time">2:00–3:00 PM</div>
+      </div>
+      <div class="stop-desc">Fill full tank before leaving. Check FASTag balance & carry cash. Grab snacks for the road.</div>
+      <span class="tag tag-fuel">⛽ Full Tank</span>
+    </div>
+
+    <div class="stop">
+      <div class="stop-header">
+        <div class="stop-name">Jadcherla</div>
+        <div class="stop-time">~4:00 PM</div>
+      </div>
+      <div class="stop-desc">NH44 smooth stretch. No stop needed — keep rolling.</div>
+    </div>
+
+    <div class="stop highlight">
+      <div class="stop-header">
+        <div class="stop-name">🍽️ Kurnool — Dinner</div>
+        <div class="stop-time">~6:00–6:30 PM</div>
+      </div>
+      <div class="stop-desc">Dinner stop here! Good time to eat well before the night drive. Fuel up if below ¾ — last reliable AP town before Karnataka. Prefer IndianOil/HP on highway bypass.</div>
+      <span class="tag tag-food">🍛 Dinner</span>
+      <span class="tag tag-fuel">⛽ Fuel if needed</span>
+    </div>
+
+    <div class="stop night-stop">
+      <div class="stop-header">
+        <div class="stop-name">⛽ Raichur — Fuel Check</div>
+        <div class="stop-time night">~8:00–8:30 PM</div>
+      </div>
+      <div class="stop-desc">Cross into Karnataka here. Top up if below half tank. Night driving starts — stay alert. HP/IOCL pumps on NH50 are reliable.</div>
+      <span class="tag tag-fuel">⛽ Top Up</span>
+      <span class="tag tag-night">🌙 Night Drive</span>
+    </div>
+
+    <div class="stop night-stop">
+      <div class="stop-header">
+        <div class="stop-name">Sindhanur — Pass Through</div>
+        <div class="stop-time night">~9:30 PM</div>
+      </div>
+      <div class="stop-desc">Stretch your legs, splash water on your face if feeling drowsy. Keep moving.</div>
+    </div>
+
+    <div class="stop night-stop">
+      <div class="stop-header">
+        <div class="stop-name">Hospet — Break</div>
+        <div class="stop-time night">~10:30 PM</div>
+      </div>
+      <div class="stop-desc">Good moment for a tea/coffee break. Re-energize for the final Hubli–Goa leg. 24hr dhabas usually available here.</div>
+      <span class="tag tag-food">☕ Chai Stop</span>
+    </div>
+
+    <div class="stop highlight">
+      <div class="stop-header">
+        <div class="stop-name">🛢️ Hubli — MANDATORY FULL TANK</div>
+        <div class="stop-time">~11:30 PM</div>
+      </div>
+      <div class="stop-desc">⚠️ CRITICAL — Fill full tank before ghats. Almost zero pumps ahead for ~100 km. Eat something light if hungry. Driver switch recommended before ghat section if possible.</div>
+      <span class="tag tag-fuel">⛽ MANDATORY Full Tank</span>
+      <span class="tag tag-warn">⚠️ Don't Skip</span>
+    </div>
+
+    <div class="stop night-stop">
+      <div class="stop-header">
+        <div class="stop-name">🌿 Ankola — Ghat Section</div>
+        <div class="stop-time night">~1:30 AM</div>
+      </div>
+      <div class="stop-desc">Western Ghats at night — speed drops to 30–40 km/h. Winding hairpin bends, no streetlights, occasional fog. Drive slowly and carefully. Stunning but needs full focus. No overtaking on blind curves.</div>
+      <span class="tag tag-ghat">🌄 Ghats</span>
+      <span class="tag tag-warn">🌙 Night Ghats</span>
+      <span class="tag tag-night">🐢 Slow Down</span>
+    </div>
+
+    <div class="stop highlight">
+      <div class="stop-header">
+        <div class="stop-name">🌴 Panaji, Goa — You Made It!</div>
+        <div class="stop-time">~4:00–5:00 AM</div>
+      </div>
+      <div class="stop-desc">Early morning Goa arrival — the sea breeze hits different at sunrise 🌅 Check into your stay, rest up, and then beach time!</div>
+      <span class="tag tag-food">🎉 Destination!</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- FUEL PLAN -->
+<div class="section">
+  <div class="section-title">⛽ Fuel Plan</div>
+  <div class="fuel-grid">
+    <div class="fuel-card">
+      <div class="fuel-loc">🏙️ Hyderabad</div>
+      <div class="fuel-note"><span class="fuel-dot" style="background:#f5a623"></span>Full tank — no exceptions</div>
+    </div>
+    <div class="fuel-card">
+      <div class="fuel-loc">🔶 Kurnool / Raichur</div>
+      <div class="fuel-note"><span class="fuel-dot" style="background:#60a5fa"></span>Top up if below ¾ tank</div>
+    </div>
+    <div class="fuel-card must">
+      <div class="fuel-loc" style="color:var(--accent)">⚠️ Hubli — MANDATORY Full Tank (~11:30 PM)</div>
+      <div class="fuel-note">Ghat section ahead has almost zero pumps. Night + ghats = no room for error. Prefer IndianOil / HP / BP. Fill to the brim.</div>
+    </div>
+    <div class="fuel-card">
+      <div class="fuel-loc">🌿 Goa</div>
+      <div class="fuel-note"><span class="fuel-dot" style="background:#4ade80"></span>Normal supply — no issues</div>
+    </div>
+    <div class="fuel-card">
+      <div class="fuel-loc">📍 AP Small Towns</div>
+      <div class="fuel-note"><span class="fuel-dot" style="background:#f87171"></span>Some shortage. Highway pumps are fine.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DIESEL ALERT -->
+<div class="section">
+  <div class="section-title">🛢️ Diesel Situation</div>
+  <div class="alert alert-warn">
+    <div class="alert-icon">⚠️</div>
+    <div>
+      <div class="alert-title">Andhra Pradesh</div>
+      <div class="alert-text">Some shortage in small towns. Highway pumps (NH44) are mostly fine. Avoid interior roads for fuel.</div>
+    </div>
+  </div>
+  <div class="alert alert-ok">
+    <div class="alert-icon">✅</div>
+    <div>
+      <div class="alert-title">Karnataka & Goa</div>
+      <div class="alert-text">No issues at all. Fuel easily available throughout. Normal supply in Goa.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="section">
+  <div class="section-title">💡 Important Tips</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">🌙</div>
+      <div class="tip-title">Night Drive Safety</div>
+      <div class="tip-body">Take turns driving if possible. Stop and rest if anyone feels drowsy — don't push through.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">⛽</div>
+      <div class="tip-title">Half-Tank Rule</div>
+      <div class="tip-body">Never let fuel drop below half. Night pumps may be closed in smaller towns.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📱</div>
+      <div class="tip-title">Offline Maps</div>
+      <div class="tip-body">Download Hubli–Goa offline in Google Maps. Signal drops heavily in the ghats at night.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">💳</div>
+      <div class="tip-title">Payments</div>
+      <div class="tip-body">Carry cash + keep FASTag recharged. Most NH tolls are FASTag-only now.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🌀</div>
+      <div class="tip-title">Ghat at Night</div>
+      <div class="tip-body">After Ankola, no streetlights. Use high beam wisely, watch for animals crossing, no overtaking.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🎒</div>
+      <div class="tip-title">Essentials</div>
+      <div class="tip-body">Water, snacks, power bank, torch. Tire inflator/puncture kit is a lifesaver on night drives.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span class="footer-emoji">🌊</span>
+  Have an epic trip, brothers! 🤙<br>
+  <span style="opacity:0.4; margin-top:6px; display:block;">Hyderabad → Goa · April 29, 2026 · 2 PM Start</span>
+</div>
+
+</body>
+</html>
